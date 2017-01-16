@@ -1,0 +1,24 @@
+{
+  "name": "VEKsoftware/yii2-qaa-manager",
+  "description": "Questions and Answers module",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dolgikh Vladimir",
+      "email": "kojit2009@gmail.com"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "vekqaam\\": ""
+    }
+  }
+}
