@@ -1,9 +1,12 @@
 <?php
 
-use qaa\QaaManager;
+use vekqaam\QaaManager;
 use yii\db\Migration;
 
-class m201716_000000_qaainit extends Migration
+/**
+ * Class m201716_000000_qaa_init
+ */
+class m201716_000000_qaa_init extends Migration
 {
     /**
      * {@inheritdoc}
