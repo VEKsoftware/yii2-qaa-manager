@@ -3,6 +3,7 @@
 namespace vekqaam;
 
 use Yii;
+use yii\base\ErrorException;
 use yii\base\Module;
 use yii\i18n\PhpMessageSource;
 
@@ -19,6 +20,8 @@ class QaaManager extends Module
      * {@inheritdoc}
      *
      * @return void
+     *
+     * @throws ErrorException - не найден компонент для подключения к БД
      */
     public function init()
     {
@@ -32,6 +35,8 @@ class QaaManager extends Module
         }
 
         $this->registerTranslations();
+
+        $this->checkConnectionComponent();
     }
 
     /**
@@ -39,7 +44,7 @@ class QaaManager extends Module
      *
      * @return void
      */
-    public function registerTranslations()
+    protected function registerTranslations()
     {
         \Yii::$app->i18n->translations['vekqaam'] = [
             'class' => PhpMessageSource::class,
@@ -49,5 +54,19 @@ class QaaManager extends Module
                 'vekqaam' => 'vekqaam.php'
             ],
         ];
+    }
+
+    /**
+     * Проверяем на наличие компонента для подключения с БД
+     *
+     * @return void
+     *
+     * @throws ErrorException - не найден компонент для подключения к БД
+     */
+    protected function checkConnectionComponent()
+    {
+        if (!\Yii::$app->has($this->db)) {
+            throw new ErrorException(Yii::t('vekqaam', 'Connection component not found'));
+        }
     }
 }
