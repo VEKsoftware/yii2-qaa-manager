@@ -9,7 +9,7 @@ use yii\web\View;
  * @var $model QaaMainBase
  */
 
-$this->title = Yii::t('vekqaam', 'Update {modelClass}: ', ['modelClass' => 'Qaa Main Base']) . $model->title;
+$this->title = Yii::t('vekqaam', 'Update {modelClass}: ', ['modelClass' => Yii::t('vekqaam', 'Qaa Main Base')]) . $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('vekqaam', 'Qaa Main Bases'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('vekqaam', 'Update');

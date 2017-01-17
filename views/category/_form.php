@@ -18,12 +18,6 @@ use yii\widgets\ActiveForm;
 
     <?php echo $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?php echo $form->field($model, 'created_at')->textInput() ?>
-
-    <?php echo $form->field($model, 'updated_at')->textInput() ?>
-
-    <?php echo $form->field($model, 'op_lock')->textInput() ?>
-
     <div class="form-group">
         <?php echo Html::submitButton(
             $model->isNewRecord

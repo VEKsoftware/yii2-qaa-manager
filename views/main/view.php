@@ -47,7 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'isHidden:boolean',
             'created_at',
             'updated_at',
-            'op_lock',
         ],
     ]) ?>
 

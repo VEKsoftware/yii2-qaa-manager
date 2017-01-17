@@ -44,7 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'created_at',
             'updated_at',
-            'op_lock',
         ],
     ]) ?>
 

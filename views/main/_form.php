@@ -18,17 +18,13 @@ use yii\widgets\ActiveForm;
 
     <?php echo $form->field($model, 'category_id')->textInput() ?>
 
-    <?php echo $form->field($model, 'title')->textarea(['rows' => 6]) ?>
+    <?php echo $form->field($model, 'title')->textarea(['rows' => 2]) ?>
 
     <?php echo $form->field($model, 'text')->textarea(['rows' => 6]) ?>
 
-    <?php echo $form->field($model, 'isHidden')->checkbox() ?>
-
-    <?php echo $form->field($model, 'created_at')->textInput() ?>
-
-    <?php echo $form->field($model, 'updated_at')->textInput() ?>
-
-    <?php echo $form->field($model, 'op_lock')->textInput() ?>
+    <?php if (!$model->isNewRecord): ?>
+        <?php echo $form->field($model, 'isHidden')->checkbox() ?>
+    <?php endif; ?>
 
     <div class="form-group">
         <?php echo Html::submitButton(
