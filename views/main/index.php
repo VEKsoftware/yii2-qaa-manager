@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'text:ntext',
             [
                 'attribute' => 'isHidden',
-                'filter' => Html::activeDropDownList($searchModel, 'isHidden', $isHiddenDD),
+                'filter' => Html::activeDropDownList($searchModel, 'isHidden', $isHiddenDD, ['prompt' => Yii::t('vekqaam', 'Not selected')]),
                 'format' => 'boolean'
             ],
             [

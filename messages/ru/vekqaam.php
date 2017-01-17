@@ -19,6 +19,7 @@ return [
     'ID' => 'ID',
     'Is Hidden' => 'Скрыто',
     'No' => 'Нет',
+    'Not selected' => 'Не выбрано',
     'Reset' => 'Сбросить',
     'Search' => 'Поиск',
     'Title' => 'Заголовок',
