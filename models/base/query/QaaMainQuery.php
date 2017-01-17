@@ -2,12 +2,16 @@
 
 namespace vekqaam\models\base\query;
 
+use vekqaam\models\base\QaaMainBase;
+use yii\db\ActiveQuery;
+use yii\db\Connection;
+
 /**
- * This is the ActiveQuery class for [[\vekqaam\models\base\QaaMainBase]].
+ * This is the ActiveQuery class for [[QaaMainBase]].
  *
- * @see \vekqaam\models\base\QaaMainBase
+ * @see QaaMainBase
  */
-class QaaMainQuery extends \yii\db\ActiveQuery
+class QaaMainQuery extends ActiveQuery
 {
     /*public function active()
     {
@@ -15,8 +19,11 @@ class QaaMainQuery extends \yii\db\ActiveQuery
     }*/
 
     /**
-     * @inheritdoc
-     * @return \vekqaam\models\base\QaaMainBase[]|array
+     * {@inheritdoc}
+     *
+     * @param Connection $db the DB connection used to create the DB command.
+     *
+     * @return QaaMainBase[]|array
      */
     public function all($db = null)
     {
@@ -24,8 +31,11 @@ class QaaMainQuery extends \yii\db\ActiveQuery
     }
 
     /**
-     * @inheritdoc
-     * @return \vekqaam\models\base\QaaMainBase|array|null
+     * {@inheritdoc}
+     *
+     * @param Connection $db the DB connection used to create the DB command.
+     *
+     * @return QaaMainBase|array|null
      */
     public function one($db = null)
     {

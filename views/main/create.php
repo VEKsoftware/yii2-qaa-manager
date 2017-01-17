@@ -1,10 +1,14 @@
 <?php
 
+use vekqaam\models\base\QaaMainBase;
 use yii\helpers\Html;
+use yii\web\View;
 
 
-/* @var $this yii\web\View */
-/* @var $model vekqaam\models\base\QaaMainBase */
+/**
+ * @var $this View
+ * @var $model QaaMainBase
+ */
 
 $this->title = Yii::t('vekqaam', 'Create Qaa Main Base');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('vekqaam', 'Qaa Main Bases'), 'url' => ['index']];
@@ -12,10 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="qaa-main-base-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?php echo Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?php echo $this->render('_form', ['model' => $model]) ?>
 
 </div>

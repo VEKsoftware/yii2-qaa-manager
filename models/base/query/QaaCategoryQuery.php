@@ -2,12 +2,16 @@
 
 namespace vekqaam\models\base\query;
 
+use vekqaam\models\base\QaaCategoryBase;
+use yii\db\ActiveQuery;
+use yii\db\Connection;
+
 /**
- * This is the ActiveQuery class for [[\vekqaam\models\base\QaaCategoryBase]].
+ * This is the ActiveQuery class for [[QaaCategoryBase]].
  *
- * @see \vekqaam\models\base\QaaCategoryBase
+ * @see QaaCategoryBase
  */
-class QaaCategoryQuery extends \yii\db\ActiveQuery
+class QaaCategoryQuery extends ActiveQuery
 {
     /*public function active()
     {
@@ -15,8 +19,11 @@ class QaaCategoryQuery extends \yii\db\ActiveQuery
     }*/
 
     /**
-     * @inheritdoc
-     * @return \vekqaam\models\base\QaaCategoryBase[]|array
+     * {@inheritdoc}
+     *
+     * @param Connection $db the DB connection used to create the DB command.
+     *
+     * @return QaaCategoryBase[]|array
      */
     public function all($db = null)
     {
@@ -24,8 +31,11 @@ class QaaCategoryQuery extends \yii\db\ActiveQuery
     }
 
     /**
-     * @inheritdoc
-     * @return \vekqaam\models\base\QaaCategoryBase|array|null
+     * {@inheritdoc}
+     *
+     * @param Connection $db the DB connection used to create the DB command.
+     *
+     * @return QaaCategoryBase|array|null
      */
     public function one($db = null)
     {

@@ -2,7 +2,13 @@
 
 namespace vekqaam\models\base;
 
+use vekqaam\models\base\query\QaaMainQuery;
+use vekqaam\QaaManager;
 use Yii;
+use yii\base\InvalidConfigException;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
+use yii\db\Connection;
 
 /**
  * This is the model class for table "qaa_main".
@@ -18,10 +24,12 @@ use Yii;
  *
  * @property QaaCategoryBase $category
  */
-class QaaMainBase extends \yii\db\ActiveRecord
+class QaaMainBase extends ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
+     *
+     * @return string
      */
     public static function tableName()
     {
@@ -29,15 +37,23 @@ class QaaMainBase extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\Connection the database connection used by this AR class.
+     * {@inheritdoc}
+     *
+     * @return Connection the database connection used by this AR class.
+     *
+     * @throws InvalidConfigException
      */
     public static function getDb()
     {
-        return Yii::$app->get('dbPublic');
+        $module = QaaManager::getInstance();
+
+        return Yii::$app->get($module->db);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
+     *
+     * @return array
      */
     public function rules()
     {
@@ -47,12 +63,20 @@ class QaaMainBase extends \yii\db\ActiveRecord
             [['title', 'text'], 'string'],
             [['isHidden'], 'boolean'],
             [['created_at', 'updated_at'], 'safe'],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => QaaCategoryBase::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [
+                ['category_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => QaaCategoryBase::className(),
+                'targetAttribute' => ['category_id' => 'id']
+            ],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
+     *
+     * @return array
      */
     public function attributeLabels()
     {
@@ -69,7 +93,9 @@ class QaaMainBase extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * Связь с Category
+     *
+     * @return ActiveQuery
      */
     public function getCategory()
     {
@@ -77,11 +103,12 @@ class QaaMainBase extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
-     * @return \vekqaam\models\base\query\QaaMainQuery the active query used by this AR class.
+     * {@inheritdoc}
+     *
+     * @return QaaMainQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \vekqaam\models\base\query\QaaMainQuery(get_called_class());
+        return new QaaMainQuery(get_called_class());
     }
 }

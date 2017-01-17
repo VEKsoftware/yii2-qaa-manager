@@ -2,7 +2,12 @@
 
 namespace vekqaam\models\base;
 
+use vekqaam\models\base\query\QaaCategoryQuery;
+use vekqaam\QaaManager;
 use Yii;
+use yii\base\InvalidConfigException;
+use yii\db\ActiveQuery;
+use yii\db\Connection;
 
 /**
  * This is the model class for table "qaa_category".
@@ -18,7 +23,9 @@ use Yii;
 class QaaCategoryBase extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
+     *
+     * @return string
      */
     public static function tableName()
     {
@@ -26,15 +33,23 @@ class QaaCategoryBase extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\Connection the database connection used by this AR class.
+     * {@inheritdoc}
+     *
+     * @return Connection the database connection used by this AR class.
+     *
+     * @throws InvalidConfigException
      */
     public static function getDb()
     {
-        return Yii::$app->get('dbPublic');
+        $module = QaaManager::getInstance();
+
+        return Yii::$app->get($module->db);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
+     *
+     * @return array
      */
     public function rules()
     {
@@ -48,7 +63,9 @@ class QaaCategoryBase extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
+     *
+     * @return array
      */
     public function attributeLabels()
     {
@@ -62,7 +79,9 @@ class QaaCategoryBase extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * Связь с Main
+     *
+     * @return ActiveQuery
      */
     public function getQaaMains()
     {
@@ -70,11 +89,12 @@ class QaaCategoryBase extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
-     * @return \vekqaam\models\base\query\QaaCategoryQuery the active query used by this AR class.
+     * {@inheritdoc}
+     *
+     * @return QaaCategoryQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \vekqaam\models\base\query\QaaCategoryQuery(get_called_class());
+        return new QaaCategoryQuery(get_called_class());
     }
 }

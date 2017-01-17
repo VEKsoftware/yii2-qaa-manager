@@ -1,28 +1,34 @@
 <?php
 
+use yii\grid\ActionColumn;
+use yii\grid\SerialColumn;
+use vekqaam\models\QaaMainSearch;
+use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\web\View;
 
-/* @var $this yii\web\View */
-/* @var $searchModel vekqaam\models\QaaMainSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/**
+ * @var $this         View
+ * @var $searchModel  QaaMainSearch
+ * @var $dataProvider ActiveDataProvider
+ */
 
 $this->title = Yii::t('vekqaam', 'Qaa Main Bases');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="qaa-main-base-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <h1><?php echo Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('vekqaam', 'Create Qaa Main Base'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php echo Html::a(Yii::t('vekqaam', 'Create Qaa Main Base'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
+    <?php echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => SerialColumn::class],
 
             'id',
             'category_id',
@@ -33,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'updated_at',
             // 'op_lock',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => ActionColumn::class],
         ],
     ]); ?>
 </div>

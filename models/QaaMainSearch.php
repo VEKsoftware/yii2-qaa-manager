@@ -3,6 +3,7 @@
 namespace vekqaam\models;
 
 use Yii;
+use yii\base\InvalidParamException;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use vekqaam\models\base\QaaMainBase;
@@ -13,7 +14,9 @@ use vekqaam\models\base\QaaMainBase;
 class QaaMainSearch extends QaaMainBase
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
+     *
+     * @return array
      */
     public function rules()
     {
@@ -25,40 +28,42 @@ class QaaMainSearch extends QaaMainBase
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
+     *
+     * @return array
      */
     public function scenarios()
     {
-        // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
     /**
      * Creates data provider instance with search query applied
      *
-     * @param array $params
+     * @param array $params - параметры
      *
      * @return ActiveDataProvider
+     *
+     * @throws InvalidParamException
      */
     public function search($params)
     {
         $query = QaaMainBase::find();
 
-        // add conditions that should always apply here
-
+        // Add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+            'query' => $query
         ]);
 
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
+            // Uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
         }
 
-        // grid filtering conditions
+        // Grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'category_id' => $this->category_id,

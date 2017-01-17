@@ -1,10 +1,14 @@
 <?php
 
+use vekqaam\models\base\QaaCategoryBase;
 use yii\helpers\Html;
+use yii\web\View;
 
 
-/* @var $this yii\web\View */
-/* @var $model vekqaam\models\base\QaaCategoryBase */
+/**
+ * @var $this  View
+ * @var $model QaaCategoryBase
+ */
 
 $this->title = Yii::t('vekqaam', 'Create Qaa Category Base');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('vekqaam', 'Qaa Category Bases'), 'url' => ['index']];
@@ -12,10 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="qaa-category-base-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?php echo Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?php echo $this->render('_form', ['model' => $model]) ?>
 
 </div>
