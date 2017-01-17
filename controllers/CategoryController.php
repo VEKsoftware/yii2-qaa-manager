@@ -104,11 +104,24 @@ class CategoryController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', ['model' => $model]);
+        try {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $response = $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                $response = $this->render('update', ['model' => $model]);
+            }
+        } catch (StaleObjectException $e) {
+            Yii::$app
+                ->session
+                ->setFlash(
+                    'error',
+                    Yii::t('vekqaam', 'The data have been changed, update the data and re-edit')
+                );
+
+            $response = $this->render('update', ['model' => $model]);
         }
+
+        return $response;
     }
 
     /**

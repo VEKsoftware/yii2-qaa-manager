@@ -25,6 +25,7 @@ use yii\widgets\ActiveForm;
 
     <?php if (!$model->isNewRecord): ?>
         <?php echo $form->field($model, 'isHidden')->checkbox() ?>
+        <?php echo $form->field($model, 'op_lock')->hiddenInput()->label(false) ?>
     <?php endif; ?>
 
     <div class="form-group">

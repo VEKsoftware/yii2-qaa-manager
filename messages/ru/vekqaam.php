@@ -23,6 +23,7 @@ return [
     'Reset' => 'Сбросить',
     'Search' => 'Поиск',
     'Title' => 'Заголовок',
+    'The data have been changed, update the data and re-edit' => 'Данные были изменены, обновите данные и повторно внесите изменения',
     'Text' => 'Текст',
     'Qaa Category Base' => 'Категория',
     'Qaa Category Bases' => 'Категории',
