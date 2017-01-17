@@ -7,6 +7,7 @@ use yii\web\View;
 /**
  * @var $this  View
  * @var $model QaaMainBase
+ * @var $categoryDD array
  */
 
 $this->title = Yii::t('vekqaam', 'Update {modelClass}: ', ['modelClass' => Yii::t('vekqaam', 'Qaa Main Base')]) . $model->title;
@@ -18,6 +19,6 @@ $this->params['breadcrumbs'][] = Yii::t('vekqaam', 'Update');
 
     <h1><?php echo Html::encode($this->title) ?></h1>
 
-    <?php echo $this->render('_form', ['model' => $model]) ?>
+    <?php echo $this->render('_form', ['model' => $model, 'categoryDD' => $categoryDD]) ?>
 
 </div>

@@ -2,16 +2,15 @@
 
 namespace vekqaam\models;
 
-use Yii;
 use yii\base\InvalidParamException;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use vekqaam\models\base\QaaCategoryBase;
+use vekqaam\models\QaaCategory;
 
 /**
- * QaaCategorySearch represents the model behind the search form about `vekqaam\models\base\QaaCategoryBase`.
+ * QaaCategorySearch represents the model behind the search form about `QaaCategory`.
  */
-class QaaCategorySearch extends QaaCategoryBase
+class QaaCategorySearch extends QaaCategory
 {
     /**
      * {@inheritdoc}
@@ -21,8 +20,8 @@ class QaaCategorySearch extends QaaCategoryBase
     public function rules()
     {
         return [
-            [['id', 'op_lock'], 'integer'],
-            [['name', 'created_at', 'updated_at'], 'safe'],
+            [['id'], 'integer'],
+            [['name'], 'string'],
         ];
     }
 
@@ -47,7 +46,7 @@ class QaaCategorySearch extends QaaCategoryBase
      */
     public function search($params)
     {
-        $query = QaaCategoryBase::find();
+        $query = QaaCategory::find();
 
         // Add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
@@ -65,9 +64,6 @@ class QaaCategorySearch extends QaaCategoryBase
         // Grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'op_lock' => $this->op_lock,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

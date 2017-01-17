@@ -71,7 +71,7 @@ class QaaCategoryBase extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('vekqaam', 'ID'),
-            'name' => Yii::t('vekqaam', 'Name'),
+            'name' => Yii::t('vekqaam', 'Category Name'),
             'created_at' => Yii::t('vekqaam', 'Created At'),
             'updated_at' => Yii::t('vekqaam', 'Updated At'),
             'op_lock' => Yii::t('vekqaam', 'Op Lock'),

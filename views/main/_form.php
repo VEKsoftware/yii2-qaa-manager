@@ -1,14 +1,15 @@
 <?php
 
-use vekqaam\models\base\QaaMainBase;
+use vekqaam\models\QaaMain;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
 
 /**
- * @var $this  View
- * @var $model QaaMainBase
- * @var $form  ActiveForm
+ * @var $this       View
+ * @var $model      QaaMain
+ * @var $form       ActiveForm
+ * @var $categoryDD array
  */
 ?>
 
@@ -16,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php echo $form->field($model, 'category_id')->textInput() ?>
+    <?php echo $form->field($model, 'category_id')->dropDownList($categoryDD) ?>
 
     <?php echo $form->field($model, 'title')->textarea(['rows' => 2]) ?>
 

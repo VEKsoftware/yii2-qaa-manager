@@ -6,6 +6,7 @@ use vekqaam\models\QaaCategorySearch;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\jui\DatePicker;
 use yii\web\View;
 
 /**
@@ -28,13 +29,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => SerialColumn::class],
 
             'id',
             'name',
-            'created_at',
-            'updated_at',
-            'op_lock',
+            [
+                'attribute' => 'created_at',
+                'filter' => false
+            ],
+            [
+                'attribute' => 'updated_at',
+                'filter' => false
+            ],
 
             ['class' => ActionColumn::class],
         ],

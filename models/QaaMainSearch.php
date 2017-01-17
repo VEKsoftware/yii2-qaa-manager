@@ -2,17 +2,23 @@
 
 namespace vekqaam\models;
 
-use Yii;
 use yii\base\InvalidParamException;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use vekqaam\models\base\QaaMainBase;
+use vekqaam\models\QaaMain;
 
 /**
- * QaaMainSearch represents the model behind the search form about `vekqaam\models\base\QaaMainBase`.
+ * QaaMainSearch represents the model behind the search form about `QaaMain`.
  */
-class QaaMainSearch extends QaaMainBase
+class QaaMainSearch extends QaaMain
 {
+    /**
+     * Наименование категории
+     *
+     * @var string
+     */
+    public $categoryName;
+
     /**
      * {@inheritdoc}
      *
@@ -21,8 +27,8 @@ class QaaMainSearch extends QaaMainBase
     public function rules()
     {
         return [
-            [['id', 'category_id', 'op_lock'], 'integer'],
-            [['title', 'text', 'created_at', 'updated_at'], 'safe'],
+            [['id'], 'integer'],
+            [['title', 'text', 'categoryName'], 'string'],
             [['isHidden'], 'boolean'],
         ];
     }
@@ -48,11 +54,26 @@ class QaaMainSearch extends QaaMainBase
      */
     public function search($params)
     {
-        $query = QaaMainBase::find();
+        $query = QaaMain::find()->joinWith('category');
 
         // Add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
             'query' => $query
+        ]);
+
+        $dataProvider->setSort([
+            'attributes' => [
+                'id',
+                'categoryName' => [
+                    'asc' => ['category.name' => SORT_ASC],
+                    'desc' => ['category.name' => SORT_DESC],
+                ],
+                'title',
+                'text',
+                'isHidden',
+                'created_at',
+                'updated_at'
+            ]
         ]);
 
         $this->load($params);
@@ -65,16 +86,13 @@ class QaaMainSearch extends QaaMainBase
 
         // Grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'category_id' => $this->category_id,
-            'isHidden' => $this->isHidden,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'op_lock' => $this->op_lock,
+            QaaMain::tableName() . '.id' => $this->id,
+            QaaMain::tableName() . '.isHidden' => $this->isHidden,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'text', $this->text]);
+        $query->andFilterWhere(['like', QaaMain::tableName() . '.title', $this->title])
+            ->andFilterWhere(['like', QaaMain::tableName() . '.text', $this->text])
+            ->andFilterWhere(['like', QaaCategory::tableName() . '.name', $this->categoryName]);
 
         return $dataProvider;
     }

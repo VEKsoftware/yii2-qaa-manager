@@ -1,7 +1,7 @@
 <?php
 
+use vekqaam\models\QaaMain;
 use yii\grid\ActionColumn;
-use yii\grid\SerialColumn;
 use vekqaam\models\QaaMainSearch;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
@@ -9,9 +9,10 @@ use yii\grid\GridView;
 use yii\web\View;
 
 /**
- * @var $this         View
- * @var $searchModel  QaaMainSearch
- * @var $dataProvider ActiveDataProvider
+ * @var $this           View
+ * @var $searchModel    QaaMainSearch
+ * @var $dataProvider   ActiveDataProvider
+ * @var $isHiddenDD     array
  */
 
 $this->title = Yii::t('vekqaam', 'Qaa Main Bases');
@@ -28,16 +29,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => SerialColumn::class],
 
             'id',
-            'category_id',
+            [
+                'attribute' => 'categoryName',
+                'label' => Yii::t('vekqaam', 'Category Name')
+            ],
             'title:ntext',
             'text:ntext',
-            'isHidden:boolean',
-            // 'created_at',
-            // 'updated_at',
-            // 'op_lock',
+            [
+                'attribute' => 'isHidden',
+                'filter' => Html::activeDropDownList($searchModel, 'isHidden', $isHiddenDD),
+                'format' => 'boolean'
+            ],
+            [
+                'attribute' => 'created_at',
+                'filter' => false
+            ],
+            [
+                'attribute' => 'updated_at',
+                'filter' => false
+            ],
 
             ['class' => ActionColumn::class],
         ],

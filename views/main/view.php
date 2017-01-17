@@ -41,7 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'category_id',
+            [
+                'attribute' => 'categoryName',
+                'label' => Yii::t('vekqaam', 'Category Name')
+            ],
             'title:ntext',
             'text:ntext',
             'isHidden:boolean',

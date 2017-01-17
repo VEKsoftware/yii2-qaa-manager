@@ -2,6 +2,7 @@
 
 namespace vekqaam\controllers;
 
+use vekqaam\models\QaaCategory;
 use Yii;
 use vekqaam\models\base\QaaCategoryBase;
 use vekqaam\models\QaaCategorySearch;
@@ -61,6 +62,7 @@ class CategoryController extends Controller
      *
      * @return string
      *
+     * @throws NotFoundHttpException
      * @throws InvalidParamException
      */
     public function actionView($id)
@@ -140,7 +142,7 @@ class CategoryController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = QaaCategoryBase::findOne($id)) !== null) {
+        if (($model = QaaCategory::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -2,6 +2,8 @@
 
 namespace vekqaam\controllers;
 
+use vekqaam\models\QaaCategory;
+use vekqaam\models\QaaMain;
 use Yii;
 use vekqaam\models\base\QaaMainBase;
 use vekqaam\models\QaaMainSearch;
@@ -50,6 +52,7 @@ class MainController extends Controller
             [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
+                'isHiddenDD' => QaaMain::getIsHiddenDropDownList()
             ]
         );
     }
@@ -83,7 +86,13 @@ class MainController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', ['model' => $model]);
+            return $this->render(
+                'create',
+                [
+                    'model' => $model,
+                    'categoryDD' => QaaCategory::getCategoryDropDownList()
+                ]
+            );
         }
     }
 
@@ -105,7 +114,13 @@ class MainController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('update', ['model' => $model]);
+            return $this->render(
+                'update',
+                [
+                    'model' => $model,
+                    'categoryDD' => QaaCategory::getCategoryDropDownList()
+                ]
+            );
         }
     }
 
@@ -140,7 +155,7 @@ class MainController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = QaaMainBase::findOne($id)) !== null) {
+        if (($model = QaaMain::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

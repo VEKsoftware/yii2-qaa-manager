@@ -6,8 +6,9 @@ use yii\web\View;
 
 
 /**
- * @var $this View
- * @var $model QaaMainBase
+ * @var $this       View
+ * @var $model      QaaMainBase
+ * @var $categoryDD array
  */
 
 $this->title = Yii::t('vekqaam', 'Create Qaa Main Base');
@@ -18,6 +19,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?php echo Html::encode($this->title) ?></h1>
 
-    <?php echo $this->render('_form', ['model' => $model]) ?>
+    <?php echo $this->render('_form', ['model' => $model, 'categoryDD' => $categoryDD]) ?>
 
 </div>
