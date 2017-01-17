@@ -7,18 +7,18 @@ use Yii;
 /**
  * This is the model class for table "qaa_main".
  *
- * @property integer $id
- * @property integer $category_id
- * @property string $title
- * @property string $text
- * @property boolean $isHidden
- * @property string $created_at
- * @property string $updated_at
- * @property integer $op_lock
+ * @property integer         $id
+ * @property integer         $category_id
+ * @property string          $title
+ * @property string          $text
+ * @property boolean         $isHidden
+ * @property string          $created_at
+ * @property string          $updated_at
+ * @property integer         $op_lock
  *
- * @property QaaCategory $category
+ * @property QaaCategoryBase $category
  */
-class QaaMain extends \yii\db\ActiveRecord
+class QaaMainBase extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -47,7 +47,7 @@ class QaaMain extends \yii\db\ActiveRecord
             [['title', 'text'], 'string'],
             [['isHidden'], 'boolean'],
             [['created_at', 'updated_at'], 'safe'],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => QaaCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => QaaCategoryBase::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
 
@@ -73,7 +73,7 @@ class QaaMain extends \yii\db\ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(QaaCategory::className(), ['id' => 'category_id']);
+        return $this->hasOne(QaaCategoryBase::className(), ['id' => 'category_id']);
     }
 
     /**

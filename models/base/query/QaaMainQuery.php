@@ -3,9 +3,9 @@
 namespace vekqaam\models\base\query;
 
 /**
- * This is the ActiveQuery class for [[\vekqaam\models\base\QaaMain]].
+ * This is the ActiveQuery class for [[\vekqaam\models\base\QaaMainBase]].
  *
- * @see \vekqaam\models\base\QaaMain
+ * @see \vekqaam\models\base\QaaMainBase
  */
 class QaaMainQuery extends \yii\db\ActiveQuery
 {
@@ -16,7 +16,7 @@ class QaaMainQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \vekqaam\models\base\QaaMain[]|array
+     * @return \vekqaam\models\base\QaaMainBase[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class QaaMainQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \vekqaam\models\base\QaaMain|array|null
+     * @return \vekqaam\models\base\QaaMainBase|array|null
      */
     public function one($db = null)
     {

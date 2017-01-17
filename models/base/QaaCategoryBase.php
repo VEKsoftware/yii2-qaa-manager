@@ -7,15 +7,15 @@ use Yii;
 /**
  * This is the model class for table "qaa_category".
  *
- * @property integer $id
- * @property string $name
- * @property string $created_at
- * @property string $updated_at
- * @property integer $op_lock
+ * @property integer       $id
+ * @property string        $name
+ * @property string        $created_at
+ * @property string        $updated_at
+ * @property integer       $op_lock
  *
- * @property QaaMain[] $qaaMains
+ * @property QaaMainBase[] $qaaMains
  */
-class QaaCategory extends \yii\db\ActiveRecord
+class QaaCategoryBase extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -66,7 +66,7 @@ class QaaCategory extends \yii\db\ActiveRecord
      */
     public function getQaaMains()
     {
-        return $this->hasMany(QaaMain::className(), ['category_id' => 'id']);
+        return $this->hasMany(QaaMainBase::className(), ['category_id' => 'id']);
     }
 
     /**

@@ -3,9 +3,9 @@
 namespace vekqaam\models\base\query;
 
 /**
- * This is the ActiveQuery class for [[\vekqaam\models\base\QaaCategory]].
+ * This is the ActiveQuery class for [[\vekqaam\models\base\QaaCategoryBase]].
  *
- * @see \vekqaam\models\base\QaaCategory
+ * @see \vekqaam\models\base\QaaCategoryBase
  */
 class QaaCategoryQuery extends \yii\db\ActiveQuery
 {
@@ -16,7 +16,7 @@ class QaaCategoryQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \vekqaam\models\base\QaaCategory[]|array
+     * @return \vekqaam\models\base\QaaCategoryBase[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class QaaCategoryQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \vekqaam\models\base\QaaCategory|array|null
+     * @return \vekqaam\models\base\QaaCategoryBase|array|null
      */
     public function one($db = null)
     {
