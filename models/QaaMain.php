@@ -3,6 +3,7 @@
 namespace vekqaam\models;
 
 use vekqaam\models\base\QaaMainBase;
+use vekqaam\models\base\query\QaaMainQuery;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
@@ -63,5 +64,34 @@ class QaaMain extends QaaMainBase
             0 => Yii::t('vekqaam', 'No'),
             1 => Yii::t('vekqaam', 'Yes'),
         ];
+    }
+
+    /**
+     * Получаем весь блок по категории
+     *
+     * @param string|array $condition - Условия для запроса
+     *
+     * @return QaaMainQuery
+     */
+    public static function getCategoryBlock($condition)
+    {
+        $selectCondition = static::tableName() . '.*';
+
+        return static::find()
+            ->select($selectCondition)
+            ->joinWith('category')
+            ->where($condition);
+    }
+
+    /**
+     * Получаем Количество элементов в блоке
+     *
+     * @param string|array $condition - Условия для запроса
+     *
+     * @return int|string
+     */
+    public static function getCategoryBlockCount($condition)
+    {
+        return static::getCategoryBlock($condition)->count();
     }
 }
