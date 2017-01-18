@@ -29,7 +29,7 @@ class QaaCategoryBase extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'qaa_category';
+        return '{{%qaa_category}}';
     }
 
     /**

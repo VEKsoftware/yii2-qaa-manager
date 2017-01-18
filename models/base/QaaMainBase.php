@@ -33,7 +33,7 @@ class QaaMainBase extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'qaa_main';
+        return '{{%qaa_main}}';
     }
 
     /**
