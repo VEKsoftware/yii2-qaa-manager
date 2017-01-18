@@ -6,6 +6,7 @@ use Yii;
 use yii\base\ErrorException;
 use yii\base\Module;
 use yii\i18n\PhpMessageSource;
+use yii\redactor\RedactorModule;
 
 class QaaManager extends Module
 {
@@ -37,6 +38,7 @@ class QaaManager extends Module
         $this->registerTranslations();
 
         $this->checkConnectionComponent();
+        $this->addModules();
     }
 
     /**
@@ -68,5 +70,15 @@ class QaaManager extends Module
         if (!\Yii::$app->has($this->db)) {
             throw new ErrorException(Yii::t('vekqaam', 'Connection component not found'));
         }
+    }
+
+    /**
+     * Добавляем дополнительные модули в зависимости
+     *
+     * @return void
+     */
+    protected function addModules()
+    {
+        \Yii::$app->setModule('redactor', ['class' => RedactorModule::class]);
     }
 }

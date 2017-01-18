@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => Yii::t('vekqaam', 'Category Name')
             ],
             'title:ntext',
-            'text:ntext',
+            'text:html',
             'isHidden:boolean',
             'created_at',
             'updated_at',

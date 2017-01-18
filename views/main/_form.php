@@ -2,6 +2,7 @@
 
 use vekqaam\models\QaaMain;
 use yii\helpers\Html;
+use yii\redactor\widgets\Redactor;
 use yii\web\View;
 use yii\widgets\ActiveForm;
 
@@ -21,7 +22,7 @@ use yii\widgets\ActiveForm;
 
     <?php echo $form->field($model, 'title')->textarea(['rows' => 2]) ?>
 
-    <?php echo $form->field($model, 'text')->textarea(['rows' => 6]) ?>
+    <?php echo $form->field($model, 'text')->widget(Redactor::className(), ['clientOptions' => ['fileUpload' => false]]) ?>
 
     <?php if (!$model->isNewRecord): ?>
         <?php echo $form->field($model, 'isHidden')->checkbox() ?>

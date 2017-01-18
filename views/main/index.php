@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => Yii::t('vekqaam', 'Category Name')
             ],
             'title:ntext',
-            'text:ntext',
+            'text:html',
             [
                 'attribute' => 'isHidden',
                 'filter' => Html::activeDropDownList($searchModel, 'isHidden', $isHiddenDD, ['prompt' => Yii::t('vekqaam', 'Not selected')]),
