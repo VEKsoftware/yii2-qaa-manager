@@ -22,7 +22,20 @@ use yii\widgets\ActiveForm;
 
     <?php echo $form->field($model, 'title')->textarea(['rows' => 2]) ?>
 
-    <?php echo $form->field($model, 'text')->widget(Redactor::className(), ['clientOptions' => ['fileUpload' => false]]) ?>
+    <?php
+    echo $form
+        ->field($model, 'text')
+        ->widget(
+            Redactor::className(),
+            [
+                'clientOptions' => [
+                    'fileUpload' => false,
+                    'imageUpload' => false,
+                    'minHeight' => 200
+                ]
+            ]
+        )
+    ?>
 
     <?php if (!$model->isNewRecord): ?>
         <?php echo $form->field($model, 'isHidden')->checkbox() ?>
